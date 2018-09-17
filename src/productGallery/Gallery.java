@@ -11,6 +11,13 @@ public class Gallery extends JFrame {
     private JTextField textField2;
     private JTextField textField3;
     private JDatePickerImpl datePicker;
+    private JPanel JPanel_Price;
+    private JPanel JPanel_AddDate;
+    private JPanel JPanel_Picture;
+    private JPanel JPanel_Name;
+    private JPanel JPanel_ID;
+    private JPanel JPanel_DaneKontener;
+    private JPanel JPanel_DrugiKontener;
 
     public Gallery() {
         setContentPane(panel1);
@@ -18,6 +25,7 @@ public class Gallery extends JFrame {
         setVisible(true);
         setLocationRelativeTo(null);
         setSize(1000,500);
+        setTitle("Product Gallery");
     }
 
     public static void main(String[] args) {
