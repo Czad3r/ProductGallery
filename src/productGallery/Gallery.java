@@ -18,7 +18,6 @@ public class Gallery extends JFrame {
     private JPanel JPanel_ID;
     private JPanel JPanel_DaneKontener;
     private JPanel JPanel_DrugiKontener;
-<<<<<<< HEAD
     private JTable JTable;
     private JScrollPane scrollPane1;
     private JPanel JPanel_Buttony;
@@ -26,8 +25,6 @@ public class Gallery extends JFrame {
     private JPanel JPanel_Buttony2;
     private JButton deleteButton;
     private JButton firstButton;
-=======
->>>>>>> 094cf3748cccaad0496383968bcc66e7d14fc538
 
     public Gallery() {
         setContentPane(panel1);
