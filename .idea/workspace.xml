@@ -3,12 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="dbb66932-3731-42db-86c3-44eb9dd142ee" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Resources/Ikony/Button-Add-icon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Resources/Ikony/Button-Refresh-icon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Resources/Ikony/button_add_icon_oRj_icon.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Resources/Ikony/button_refresh_icon_RWf_icon.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/productGallery/Gallery.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/productGallery/Gallery.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/productGallery/Gallery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/productGallery/Gallery.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -173,7 +167,7 @@
     <property name="UI_DESIGNER_EDITOR_MODE.PaletteManager.STATE" value="right" />
     <property name="UI_DESIGNER_EDITOR_MODE.PaletteManager.WIDTH" value="224" />
     <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.STATE" value="left" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1537208526980" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1537208777856" />
     <property name="last_opened_file_path" value="$USER_HOME$/Downloads/jdatepicker-1.3.4.jar!/" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
