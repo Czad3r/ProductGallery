@@ -11,6 +11,20 @@ public class Gallery extends JFrame {
     private JTextField textField2;
     private JTextField textField3;
     private JDatePickerImpl datePicker;
+    private JPanel JPanel_Price;
+    private JPanel JPanel_AddDate;
+    private JPanel JPanel_Picture;
+    private JPanel JPanel_Name;
+    private JPanel JPanel_ID;
+    private JPanel JPanel_DaneKontener;
+    private JPanel JPanel_DrugiKontener;
+    private JTable JTable;
+    private JScrollPane scrollPane1;
+    private JPanel JPanel_Buttony;
+    private JButton chooseImageButton;
+    private JPanel JPanel_Buttony2;
+    private JButton deleteButton;
+    private JButton firstButton;
 
     public Gallery() {
         setContentPane(panel1);
@@ -18,6 +32,7 @@ public class Gallery extends JFrame {
         setVisible(true);
         setLocationRelativeTo(null);
         setSize(1000,500);
+        setTitle("Product Gallery");
     }
 
     public static void main(String[] args) {
@@ -33,6 +48,13 @@ public class Gallery extends JFrame {
         p.put("text.year", "Year");
         JDatePanelImpl datePanel = new JDatePanelImpl(model,p);
         datePicker = new JDatePickerImpl(datePanel,new JDateFormatter()); //JDatePickerImpl
+
+        //Sekcja tabeli
+        String[] columnNames = {"ID", "NAME","PRICE","ADD DATE"};
+        Object[][] data = {};
+        JTable = new JTable(data, columnNames);
+        JTable.setFillsViewportHeight(true);
+        scrollPane1 = new JScrollPane(JTable);
     }
 }
 
