@@ -14,7 +14,11 @@
       <grid id="68c2b" binding="JPanel_DaneKontener" layout-manager="GridBagLayout">
         <constraints>
           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="1" use-parent-layout="false"/>
+<<<<<<< HEAD
           <gridbag weightx="0.6" weighty="0.5"/>
+=======
+          <gridbag weightx="0.2" weighty="0.5"/>
+>>>>>>> 094cf3748cccaad0496383968bcc66e7d14fc538
         </constraints>
         <properties/>
         <border type="none"/>
@@ -41,7 +45,10 @@
                 </constraints>
                 <properties>
                   <font style="1"/>
+<<<<<<< HEAD
                   <labelFor value="e6466"/>
+=======
+>>>>>>> 094cf3748cccaad0496383968bcc66e7d14fc538
                   <preferredSize width="64" height="16"/>
                   <text value="ID:"/>
                 </properties>
@@ -110,6 +117,7 @@
             <properties>
               <minimumSize width="20" height="30"/>
               <preferredSize width="20" height="30"/>
+<<<<<<< HEAD
             </properties>
             <border type="none"/>
             <children>
@@ -157,37 +165,68 @@
                 <constraints>
                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="1" use-parent-layout="false">
                     <preferred-size width="44" height="-1"/>
+=======
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="7d1cb" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="1" use-parent-layout="false">
+                    <preferred-size width="44" height="16"/>
+>>>>>>> 094cf3748cccaad0496383968bcc66e7d14fc538
                   </grid>
                   <gridbag weightx="0.2" weighty="1.0"/>
                 </constraints>
                 <properties>
                   <font style="1"/>
+<<<<<<< HEAD
                   <text value="ADD DATE:"/>
                 </properties>
               </component>
               <component id="b23e1" class="org.jdatepicker.impl.JDatePickerImpl" binding="datePicker" custom-create="true">
                 <constraints>
                   <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+=======
+                  <preferredSize width="64" height="16"/>
+                  <text value="PRICE:"/>
+                </properties>
+              </component>
+              <component id="db840" class="javax.swing.JTextField" binding="textField3" default-binding="true">
+                <constraints>
+                  <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
+>>>>>>> 094cf3748cccaad0496383968bcc66e7d14fc538
                     <preferred-size width="150" height="-1"/>
                   </grid>
                   <gridbag weightx="1.0" weighty="1.0"/>
                 </constraints>
                 <properties>
+<<<<<<< HEAD
                   <autoscrolls value="true"/>
                   <preferredSize width="20" height="30"/>
+=======
+                  <preferredSize width="20" height="30"/>
+                  <text value=""/>
+>>>>>>> 094cf3748cccaad0496383968bcc66e7d14fc538
                 </properties>
               </component>
             </children>
           </grid>
+<<<<<<< HEAD
           <grid id="b71f7" binding="JPanel_Picture" layout-manager="GridBagLayout">
             <constraints>
               <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+=======
+          <grid id="e2529" binding="JPanel_AddDate" layout-manager="GridBagLayout">
+            <constraints>
+              <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+>>>>>>> 094cf3748cccaad0496383968bcc66e7d14fc538
                 <preferred-size width="820" height="24"/>
               </grid>
               <gridbag weightx="1.0" weighty="1.0"/>
             </constraints>
             <properties>
               <minimumSize width="20" height="16"/>
+<<<<<<< HEAD
               <opaque value="true"/>
               <preferredSize width="20" height="120"/>
             </properties>
@@ -196,10 +235,22 @@
               <component id="cc22a" class="javax.swing.JLabel">
                 <constraints>
                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="1" use-parent-layout="false"/>
+=======
+              <preferredSize width="20" height="30"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="cd55b" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="1" use-parent-layout="false">
+                    <preferred-size width="44" height="-1"/>
+                  </grid>
+>>>>>>> 094cf3748cccaad0496383968bcc66e7d14fc538
                   <gridbag weightx="0.2" weighty="1.0"/>
                 </constraints>
                 <properties>
                   <font style="1"/>
+<<<<<<< HEAD
                   <preferredSize width="64" height="120"/>
                   <text value="PICTURE:"/>
                 </properties>
@@ -215,10 +266,26 @@
                   <opaque value="true"/>
                   <preferredSize width="0" height="120"/>
                   <text value=""/>
+=======
+                  <text value="ADD DATE:"/>
+                </properties>
+              </component>
+              <component id="b23e1" class="org.jdatepicker.impl.JDatePickerImpl" binding="datePicker" custom-create="true">
+                <constraints>
+                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="-1"/>
+                  </grid>
+                  <gridbag weightx="1.0" weighty="1.0"/>
+                </constraints>
+                <properties>
+                  <autoscrolls value="true"/>
+                  <preferredSize width="20" height="30"/>
+>>>>>>> 094cf3748cccaad0496383968bcc66e7d14fc538
                 </properties>
               </component>
             </children>
           </grid>
+<<<<<<< HEAD
           <grid id="83afe" binding="JPanel_Buttony" layout-manager="GridBagLayout">
             <constraints>
               <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
@@ -317,10 +384,49 @@
                   <icon value="Resources/Ikony/First-icon.png"/>
                   <iconTextGap value="4"/>
                   <text value="First"/>
+=======
+          <grid id="b71f7" binding="JPanel_Picture" layout-manager="GridBagLayout">
+            <constraints>
+              <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                <preferred-size width="820" height="24"/>
+              </grid>
+              <gridbag weightx="1.0" weighty="1.0"/>
+            </constraints>
+            <properties>
+              <minimumSize width="20" height="16"/>
+              <opaque value="true"/>
+              <preferredSize width="20" height="120"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="cc22a" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="1" use-parent-layout="false"/>
+                  <gridbag weightx="0.2" weighty="1.0"/>
+                </constraints>
+                <properties>
+                  <font style="1"/>
+                  <preferredSize width="64" height="120"/>
+                  <text value="PICTURE:"/>
+                </properties>
+              </component>
+              <component id="f8557" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                  <gridbag weightx="1.0" weighty="0.0"/>
+                </constraints>
+                <properties>
+                  <background color="-16777216"/>
+                  <foreground color="-6563855"/>
+                  <opaque value="true"/>
+                  <preferredSize width="0" height="120"/>
+                  <text value=""/>
+>>>>>>> 094cf3748cccaad0496383968bcc66e7d14fc538
                 </properties>
               </component>
             </children>
           </grid>
+<<<<<<< HEAD
         </children>
       </grid>
       <grid id="4560d" binding="JPanel_DrugiKontener" layout-manager="GridBagLayout">
@@ -350,7 +456,18 @@
               </component>
             </children>
           </scrollpane>
+=======
+>>>>>>> 094cf3748cccaad0496383968bcc66e7d14fc538
         </children>
+      </grid>
+      <grid id="4560d" binding="JPanel_DrugiKontener" layout-manager="GridBagLayout">
+        <constraints>
+          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.5" weighty="0.5"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children/>
       </grid>
     </children>
   </grid>
