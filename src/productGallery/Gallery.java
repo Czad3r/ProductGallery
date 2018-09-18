@@ -1,6 +1,7 @@
 package productGallery;
 
 import com.mysql.jdbc.Connection;
+import com.mysql.jdbc.PreparedStatement;
 import org.jdatepicker.impl.*;
 
 import javax.swing.*;
@@ -9,17 +10,21 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.sql.DriverManager;
+import java.sql.Date;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.Properties;
 
 
 public class Gallery extends JFrame {
     private JPanel panel1;
-    private JTextField textField1;
-    private JTextField textField2;
-    private JTextField textField3;
-    private JDatePickerImpl datePicker;
+    private JTextField txt_ID;
+    private JTextField txt_Name;
+    private JTextField txt_Price;
+    private JDatePickerImpl txt_AddDate;
     private JPanel JPanel_Price;
     private JPanel JPanel_AddDate;
     private JPanel JPanel_Picture;
@@ -30,12 +35,14 @@ public class Gallery extends JFrame {
     private JTable JTable;
     private JScrollPane scrollPane1;
     private JPanel JPanel_Buttony;
-    private JButton btnChooseImage;
+    private JButton btn_ChooseImage;
     private JPanel JPanel_Buttony2;
     private JButton deleteButton;
     private JButton firstButton;
     private JPanel JPanel_Buttony3;
     private JLabel labelImage;
+    private JButton btn_Insert;
+    private String imagePath;
 
     public Gallery() {
         setContentPane(panel1);
@@ -46,10 +53,10 @@ public class Gallery extends JFrame {
         setTitle("Product Gallery");
 
 
-        btnChooseImage.addActionListener(new ActionListener() {
+        btn_ChooseImage.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFileChooser file = new JFileChooser(System.getProperty("user.home") + System.getProperty("file.separator")+ "Pictures");
+                JFileChooser file = new JFileChooser(System.getProperty("user.home") + System.getProperty("file.separator") + "Pictures");
 
 
                 FileNameExtensionFilter filter = new FileNameExtensionFilter("*.images", "jpg", "png");
@@ -58,10 +65,40 @@ public class Gallery extends JFrame {
                 int result = file.showSaveDialog(null);
                 if (result == JFileChooser.APPROVE_OPTION) {
                     File selectedFile = file.getSelectedFile();
-                    String path = selectedFile.getAbsolutePath();
-                    labelImage.setIcon(resizeImage(path, null));
+                    imagePath = selectedFile.getAbsolutePath();
+                    labelImage.setIcon(resizeImage(imagePath, null));
                 } else {
                     System.out.println("No File Selected");
+                }
+            }
+        });
+        btn_Insert.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (checkInputs() && imagePath != null) {
+                    try {
+                        Connection con = getConnection();
+                        PreparedStatement ps = (PreparedStatement) con.prepareStatement("INSERT INTO przedmiotyallegro(name,price,add_date,image)" + "VALUES(?,?,?,?)");
+                        ps.setString(1, txt_Name.getText());
+                        ps.setString(2, txt_Price.getText());
+
+
+                        Date selectedDate = (Date)txt_AddDate.getModel().getValue();
+                        String addDate = selectedDate.toString();
+                        ps.setString(3, addDate);
+
+                        InputStream img = new FileInputStream(new File(imagePath));
+                        ps.setBlob(4,img);
+
+                        ps.executeUpdate();
+                        JOptionPane.showMessageDialog(null, "Succesful insert!");
+                    } catch (Exception e1) {
+                        JOptionPane.showMessageDialog(null, e1.getMessage());
+                    }
+
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "At least one field isn't correct filled");
                 }
             }
         });
@@ -79,7 +116,7 @@ public class Gallery extends JFrame {
         p.put("text.month", "Month");
         p.put("text.year", "Year");
         JDatePanelImpl datePanel = new JDatePanelImpl(model, p);
-        datePicker = new JDatePickerImpl(datePanel, new JDateFormatter()); //JDatePickerImpl
+        txt_AddDate = new JDatePickerImpl(datePanel, new JDateFormatter()); //JDatePickerImpl
 
         //Sekcja tabeli
         String[] columnNames = {"ID", "NAME", "PRICE", "ADD DATE"};
@@ -120,6 +157,19 @@ public class Gallery extends JFrame {
         Image img2 = img.getScaledInstance(labelImage.getWidth(), labelImage.getHeight(), Image.SCALE_SMOOTH);
         ImageIcon finalImg = new ImageIcon(img2);
         return finalImg;
+    }
+
+    /**
+     * @return True if all inputs are corrects.
+     */
+    public boolean checkInputs() {
+        if (txt_ID == null || txt_Name == null || txt_Price == null || txt_AddDate == null) return false;
+        try {
+            Float.parseFloat(txt_Price.getText());
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 }
 

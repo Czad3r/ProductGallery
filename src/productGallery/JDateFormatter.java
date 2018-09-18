@@ -19,6 +19,7 @@ public class JDateFormatter extends AbstractFormatter {
     @Override
     public String valueToString(Object value) throws ParseException {
         if (value != null) {
+
             Calendar cal = (Calendar) value;
             return dateFormatter.format(cal.getTime());
         }
