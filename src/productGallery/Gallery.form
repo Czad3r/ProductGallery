@@ -24,7 +24,7 @@
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
                 <preferred-size width="820" height="34"/>
               </grid>
-              <gridbag weightx="1.0" weighty="1.0"/>
+              <gridbag weightx="1.0" weighty="0.15"/>
             </constraints>
             <properties>
               <minimumSize width="20" height="30"/>
@@ -66,7 +66,7 @@
               <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
                 <preferred-size width="820" height="34"/>
               </grid>
-              <gridbag weightx="1.0" weighty="1.0"/>
+              <gridbag weightx="1.0" weighty="0.15"/>
             </constraints>
             <properties>
               <minimumSize width="20" height="30"/>
@@ -105,7 +105,7 @@
               <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
                 <preferred-size width="820" height="34"/>
               </grid>
-              <gridbag weightx="1.0" weighty="1.0"/>
+              <gridbag weightx="1.0" weighty="0.15"/>
             </constraints>
             <properties>
               <minimumSize width="20" height="30"/>
@@ -115,7 +115,7 @@
             <children>
               <component id="7d1cb" class="javax.swing.JLabel">
                 <constraints>
-                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="1" use-parent-layout="false">
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="1" use-parent-layout="false">
                     <preferred-size width="44" height="16"/>
                   </grid>
                   <gridbag weightx="0.2" weighty="1.0"/>
@@ -128,7 +128,7 @@
               </component>
               <component id="db840" class="javax.swing.JTextField" binding="textField3" default-binding="true">
                 <constraints>
-                  <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
                     <preferred-size width="150" height="-1"/>
                   </grid>
                   <gridbag weightx="1.0" weighty="1.0"/>
@@ -145,7 +145,7 @@
               <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
                 <preferred-size width="820" height="24"/>
               </grid>
-              <gridbag weightx="1.0" weighty="1.0"/>
+              <gridbag weightx="1.0" weighty="0.15"/>
             </constraints>
             <properties>
               <minimumSize width="20" height="16"/>
@@ -184,7 +184,7 @@
               <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
                 <preferred-size width="820" height="24"/>
               </grid>
-              <gridbag weightx="1.0" weighty="1.0"/>
+              <gridbag weightx="1.0" weighty="0.2"/>
             </constraints>
             <properties>
               <minimumSize width="20" height="16"/>
@@ -222,7 +222,7 @@
           <grid id="83afe" binding="JPanel_Buttony" layout-manager="GridBagLayout">
             <constraints>
               <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-              <gridbag weightx="0.0" weighty="0.0"/>
+              <gridbag weightx="0.0" weighty="0.1"/>
             </constraints>
             <properties>
               <alignmentX value="0.5"/>
@@ -259,10 +259,11 @@
           </grid>
           <grid id="bb2db" binding="JPanel_Buttony2" layout-manager="GridBagLayout">
             <constraints>
-              <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-              <gridbag weightx="0.0" weighty="0.0"/>
+              <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="2" fill="1" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="1.0" weighty="0.1"/>
             </constraints>
             <properties>
+              <minimumSize width="265" height="30"/>
               <preferredSize width="343" height="60"/>
             </properties>
             <border type="none"/>
@@ -306,19 +307,6 @@
                   <text value="Insert"/>
                 </properties>
               </component>
-              <component id="9d98e" class="javax.swing.JButton" binding="firstButton" default-binding="true">
-                <constraints>
-                  <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                  <gridbag weightx="0.0" weighty="0.0"/>
-                </constraints>
-                <properties>
-                  <horizontalAlignment value="0"/>
-                  <horizontalTextPosition value="4"/>
-                  <icon value="Resources/Ikony/First-icon.png"/>
-                  <iconTextGap value="4"/>
-                  <text value="First"/>
-                </properties>
-              </component>
             </children>
           </grid>
         </children>
@@ -334,7 +322,7 @@
           <scrollpane id="e6466" binding="scrollPane1" custom-create="true">
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-              <gridbag weightx="0.0" weighty="0.0"/>
+              <gridbag weightx="1.0" weighty="1.0"/>
             </constraints>
             <properties>
               <alignmentX value="1.0"/>
@@ -350,6 +338,71 @@
               </component>
             </children>
           </scrollpane>
+          <grid id="c86dc" binding="JPanel_Buttony3" layout-manager="GridBagLayout">
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="2" fill="1" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="1.0" weighty="0.1"/>
+            </constraints>
+            <properties>
+              <minimumSize width="265" height="30"/>
+              <preferredSize width="343" height="60"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="bb570" class="javax.swing.JButton" default-binding="true">
+                <constraints>
+                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <gridbag weightx="0.0" weighty="0.0"/>
+                </constraints>
+                <properties>
+                  <horizontalAlignment value="0"/>
+                  <horizontalTextPosition value="4"/>
+                  <icon value="Resources/Ikony/Previuos.png"/>
+                  <iconTextGap value="4"/>
+                  <text value="Previous"/>
+                </properties>
+              </component>
+              <component id="49394" class="javax.swing.JButton" default-binding="true">
+                <constraints>
+                  <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <gridbag weightx="0.0" weighty="0.0"/>
+                </constraints>
+                <properties>
+                  <horizontalAlignment value="0"/>
+                  <horizontalTextPosition value="4"/>
+                  <icon value="Resources/Ikony/Next.png"/>
+                  <iconTextGap value="4"/>
+                  <text value="Next"/>
+                </properties>
+              </component>
+              <component id="d2d4" class="javax.swing.JButton" default-binding="true">
+                <constraints>
+                  <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <gridbag weightx="0.0" weighty="0.0"/>
+                </constraints>
+                <properties>
+                  <horizontalAlignment value="0"/>
+                  <horizontalTextPosition value="4"/>
+                  <icon value="Resources/Ikony/Last.png"/>
+                  <iconTextGap value="4"/>
+                  <text value="Last"/>
+                </properties>
+              </component>
+              <component id="9d98e" class="javax.swing.JButton" binding="firstButton" default-binding="true">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <gridbag weightx="0.0" weighty="0.0"/>
+                </constraints>
+                <properties>
+                  <horizontalAlignment value="0"/>
+                  <horizontalTextPosition value="4"/>
+                  <icon value="Resources/Ikony/First.png"/>
+                  <iconTextGap value="4"/>
+                  <text value="First"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
         </children>
       </grid>
     </children>

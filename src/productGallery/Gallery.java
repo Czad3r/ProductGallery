@@ -1,7 +1,10 @@
 package productGallery;
 
+import com.mysql.jdbc.Connection;
 import org.jdatepicker.impl.*;
 import javax.swing.*;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.Properties;
 
 
@@ -25,6 +28,7 @@ public class Gallery extends JFrame {
     private JPanel JPanel_Buttony2;
     private JButton deleteButton;
     private JButton firstButton;
+    private JPanel JPanel_Buttony3;
 
     public Gallery() {
         setContentPane(panel1);
@@ -33,6 +37,8 @@ public class Gallery extends JFrame {
         setLocationRelativeTo(null);
         setSize(1000,500);
         setTitle("Product Gallery");
+
+        getConnection();
     }
 
     public static void main(String[] args) {
@@ -55,6 +61,20 @@ public class Gallery extends JFrame {
         JTable = new JTable(data, columnNames);
         JTable.setFillsViewportHeight(true);
         scrollPane1 = new JScrollPane(JTable);
+    }
+    public Connection getConnection(){
+        Connection con=null;
+        try {
+            con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost/products", "root", "");
+            JOptionPane.showMessageDialog(null,"Connected");
+            return con;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null,"Not connected");
+            return null;
+        }
+
     }
 }
 
