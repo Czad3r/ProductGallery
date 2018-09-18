@@ -16,6 +16,7 @@ import java.sql.DriverManager;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Properties;
 
 
@@ -78,17 +79,17 @@ public class Gallery extends JFrame {
                 if (checkInputs() && imagePath != null) {
                     try {
                         Connection con = getConnection();
+
                         PreparedStatement ps = (PreparedStatement) con.prepareStatement("INSERT INTO przedmiotyallegro(name,price,add_date,image)" + "VALUES(?,?,?,?)");
                         ps.setString(1, txt_Name.getText());
                         ps.setString(2, txt_Price.getText());
-
 
                         Date selectedDate = (Date)txt_AddDate.getModel().getValue();
                         String addDate = selectedDate.toString();
                         ps.setString(3, addDate);
 
                         InputStream img = new FileInputStream(new File(imagePath));
-                        ps.setBlob(4,img);
+                        ps.setBlob(4,img);// Needed to change MySql config: max_allowed_packet greater than default and innodb_log_file_size
 
                         ps.executeUpdate();
                         JOptionPane.showMessageDialog(null, "Succesful insert!");
