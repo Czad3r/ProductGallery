@@ -2,19 +2,23 @@ package productGallery;
 
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
+import com.mysql.jdbc.Statement;
 import org.jdatepicker.impl.*;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
 import java.sql.DriverManager;
 import java.sql.Date;
+import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Properties;
 
 
@@ -31,7 +35,7 @@ public class Gallery extends JFrame {
     private JPanel JPanel_ID;
     private JPanel JPanel_DaneKontener;
     private JPanel JPanel_DrugiKontener;
-    private JTable JTable;
+    private JTable JTable_Products;
     private JScrollPane scrollPane1;
     private JPanel JPanel_Buttony;
     private JButton btn_ChooseImage;
@@ -42,8 +46,9 @@ public class Gallery extends JFrame {
     private JLabel labelImage;
     private JButton btn_Insert;
     private JButton btn_Update;
+
     private String imagePath;
-    private int lastID;
+    private int lastID;//Potrzeba aktualizacji
 
     public Gallery() {
         setContentPane(panel1);
@@ -52,8 +57,9 @@ public class Gallery extends JFrame {
         setLocationRelativeTo(null);
         setSize(1000, 500);
         setTitle("Product Gallery");
-        //getLastIDFromDB(); Metoda do poprawienia
+        getLastIDFromDB(); //Metoda do poprawienia
 
+        fillJTable();
 
         btn_ChooseImage.addActionListener(new ActionListener() {
             @Override
@@ -194,11 +200,14 @@ public class Gallery extends JFrame {
         txt_AddDate = new JDatePickerImpl(datePanel, new JDateFormatter()); //JDatePickerImpl
 
         //Sekcja tabeli
-        String[] columnNames = {"ID", "NAME", "PRICE", "ADD DATE"};
-        Object[][] data = {};
-        JTable = new JTable(data, columnNames);
-        JTable.setFillsViewportHeight(true);
-        scrollPane1 = new JScrollPane(JTable);
+        DefaultTableModel tableModel=new DefaultTableModel();
+        tableModel.addColumn("ID");
+        tableModel.addColumn("NAME");
+        tableModel.addColumn("PRICE");
+        tableModel.addColumn("ADD DATE");
+        JTable_Products = new JTable(tableModel);
+        JTable_Products.setFillsViewportHeight(true);
+        scrollPane1 = new JScrollPane(JTable_Products);
     }
 
     public Connection getConnection() {
@@ -248,14 +257,62 @@ public class Gallery extends JFrame {
         }
     }
 
+    public ArrayList<Product> getArrayList() {
+        ArrayList<Product> list = new ArrayList<>();
+        Connection con = getConnection();
+        String query = "SELECT * FROM przedmiotyallegro";
+        Statement st;
+        ResultSet rs;
+        Product product;
+
+        try {
+
+            st = (Statement) con.createStatement();
+            rs = st.executeQuery(query);
+
+            while (rs.next()) {
+                product = new Product(rs.getInt(1), rs.getString(2), rs.getFloat(3), rs.getDate(4), rs.getBytes(5));
+                list.add(product);
+            }
+            con.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+
+    }
+
+    public void fillJTable(){
+        ArrayList<Product> list=getArrayList();
+        DefaultTableModel tableModel= (DefaultTableModel) JTable_Products.getModel();
+
+        Object[] row=new Object[4];
+
+        SimpleDateFormat dateFormatter = new SimpleDateFormat("dd-MM-YYYY");
+
+        for(int i=0;i<list.size();i++)
+        {
+            row[0]=list.get(i).getId();
+            row[1]=list.get(i).getName();
+            row[2]=list.get(i).getPrice();
+            row[3]=dateFormatter.format(list.get(i).getAddDate());
+
+            tableModel.addRow(row);
+        }
+    }
+
     public void getLastIDFromDB() {
         Connection con = getConnection();
         String query = "SELECT id FROM `przedmiotyallegro` ORDER BY id DESC LIMIT 1";
+        Statement st;
+        ResultSet rs;
         try {
-            PreparedStatement ps = (PreparedStatement) con.prepareStatement(query);
-            ps.execute();
-
-            JOptionPane.showMessageDialog(null, lastID);
+            st = (Statement) con.createStatement();
+            rs=st.executeQuery(query);
+            rs.next();
+            lastID=rs.getInt(1);
+            //JOptionPane.showMessageDialog(null, lastID);
             con.close();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());

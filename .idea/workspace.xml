@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/src/productGallery/Gallery.java" line="93" />
+    <bookmark url="file://$PROJECT_DIR$/src/productGallery/Gallery.java" line="99" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dbb66932-3731-42db-86c3-44eb9dd142ee" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProductGallery/productGallery/Gallery$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProductGallery/productGallery/Gallery$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProductGallery/productGallery/Gallery.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProductGallery/productGallery/Gallery.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/productGallery/Gallery.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/productGallery/Gallery.form" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/productGallery/Gallery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/productGallery/Gallery.java" afterDir="false" />
     </list>
@@ -58,13 +56,13 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="4589" />
+          <entry key="java" value="5570" />
           <entry key="txt" value="62" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="4589" />
+          <entry key="JAVA" value="5570" />
           <entry key="PLAIN_TEXT" value="62" />
         </counts>
       </usages-collector>
@@ -95,14 +93,14 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/productGallery/Gallery.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="372">
-              <caret line="175" column="97" selection-start-line="175" selection-start-column="97" selection-end-line="175" selection-end-column="97" />
+            <state relative-caret-position="252">
+              <caret line="259" column="45" selection-start-line="259" selection-start-column="45" selection-end-line="259" selection-end-column="45" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="class#1671:1809" />
                 <element signature="class#2596:4369" />
-                <element signature="method#actionPerformed#0;class#2596:4369" />
                 <element signature="class#4192:5516" />
+                <element signature="class#6024:6333" />
                 <element signature="e#6387#6388#0" expanded="true" />
                 <element signature="e#6416#6417#0" expanded="true" />
                 <element signature="method#getConnection#0;class#Gallery#0" />
@@ -110,6 +108,8 @@
                 <element signature="method#resizeImage#0;class#Gallery#0" />
                 <element signature="docComment;method#checkInputs#0;class#Gallery#0" />
                 <element signature="method#checkInputs#0;class#Gallery#0" />
+                <element signature="method#getArrayList#0;class#Gallery#0" />
+                <element signature="method#fillJTable#0;class#Gallery#0" />
                 <element signature="method#getLastIDFromDB#0;class#Gallery#0" />
               </folding>
             </state>
@@ -119,8 +119,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/productGallery/JDateFormatter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="11" column="79" selection-start-line="10" selection-start-column="4" selection-end-line="11" selection-end-column="79" />
+            <state relative-caret-position="96">
+              <caret line="11" column="79" lean-forward="true" selection-start-line="10" selection-start-column="4" selection-end-line="11" selection-end-column="79" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -174,7 +174,7 @@
     <property name="UI_DESIGNER_EDITOR_MODE.PaletteManager.STATE" value="right" />
     <property name="UI_DESIGNER_EDITOR_MODE.PaletteManager.WIDTH" value="224" />
     <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.STATE" value="left" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1537355942833" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1537360824579" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
@@ -368,29 +368,29 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/productGallery/Gallery.form">
+      <provider selected="true" editor-type-id="ui-designer" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/productGallery/JDateFormatter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="11" column="79" selection-start-line="10" selection-start-column="4" selection-end-line="11" selection-end-column="79" />
+        <state relative-caret-position="96">
+          <caret line="11" column="79" lean-forward="true" selection-start-line="10" selection-start-column="4" selection-end-line="11" selection-end-column="79" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/productGallery/Gallery.form">
-      <provider selected="true" editor-type-id="ui-designer" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/productGallery/Gallery.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="372">
-          <caret line="175" column="97" selection-start-line="175" selection-start-column="97" selection-end-line="175" selection-end-column="97" />
+        <state relative-caret-position="252">
+          <caret line="259" column="45" selection-start-line="259" selection-start-column="45" selection-end-line="259" selection-end-column="45" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="class#1671:1809" />
             <element signature="class#2596:4369" />
-            <element signature="method#actionPerformed#0;class#2596:4369" />
             <element signature="class#4192:5516" />
+            <element signature="class#6024:6333" />
             <element signature="e#6387#6388#0" expanded="true" />
             <element signature="e#6416#6417#0" expanded="true" />
             <element signature="method#getConnection#0;class#Gallery#0" />
@@ -398,6 +398,8 @@
             <element signature="method#resizeImage#0;class#Gallery#0" />
             <element signature="docComment;method#checkInputs#0;class#Gallery#0" />
             <element signature="method#checkInputs#0;class#Gallery#0" />
+            <element signature="method#getArrayList#0;class#Gallery#0" />
+            <element signature="method#fillJTable#0;class#Gallery#0" />
             <element signature="method#getLastIDFromDB#0;class#Gallery#0" />
           </folding>
         </state>

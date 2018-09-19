@@ -332,10 +332,11 @@
             </properties>
             <border type="none"/>
             <children>
-              <component id="65069" class="javax.swing.JTable" binding="JTable" custom-create="true">
+              <component id="65069" class="javax.swing.JTable" binding="JTable_Products" custom-create="true">
                 <constraints/>
                 <properties>
                   <autoCreateColumnsFromModel value="false"/>
+                  <fillsViewportHeight value="true"/>
                 </properties>
               </component>
             </children>
