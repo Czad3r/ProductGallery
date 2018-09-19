@@ -17,6 +17,7 @@ import java.sql.DriverManager;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Properties;
@@ -47,19 +48,31 @@ public class Gallery extends JFrame {
     private JButton btn_Insert;
     private JButton btn_Update;
 
+    private SqlDateModel model;
+    private JDatePanelImpl datePanel;
+
     private String imagePath;
+    private int screenWidth;
+    private int screenHeight;
+    private ArrayList<Product> productList;
     private int lastID;//Potrzeba aktualizacji
 
     public Gallery() {
+        setScreenResolution();
         setContentPane(panel1);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setVisible(true);
+        pack();
+        setSize(screenWidth / 2, screenHeight / 2);
+        setLocationByPlatform(true);
         setLocationRelativeTo(null);
-        setSize(1000, 500);
+
+        setVisible(true);
+
         setTitle("Product Gallery");
         getLastIDFromDB(); //Metoda do poprawienia
 
         fillJTable();
+        setDefaultText();
 
         btn_ChooseImage.addActionListener(new ActionListener() {
             @Override
@@ -110,7 +123,7 @@ public class Gallery extends JFrame {
                             ps.executeUpdate();
                             JOptionPane.showMessageDialog(null, "Succesful insert!");
                             con.close();
-                            txt_ID.setEditable(true);
+                            fillJTable();
                         } catch (Exception e1) {
                             JOptionPane.showMessageDialog(null, e1.getMessage());
                         }
@@ -150,6 +163,7 @@ public class Gallery extends JFrame {
                         ps.executeUpdate();
                         JOptionPane.showMessageDialog(null, "Succesful update!");
                         con.close();
+                        fillJTable();
 
                     } catch (FileNotFoundException e1) {
                         JOptionPane.showMessageDialog(null, "Image file not found!");
@@ -175,6 +189,7 @@ public class Gallery extends JFrame {
                         ps.executeUpdate();
                         con.close();
                         JOptionPane.showMessageDialog(null, "Succesfully deleted record!");
+                        fillJTable();
 
                     } catch (Exception e1) {
                         JOptionPane.showMessageDialog(null, e1.getMessage());
@@ -186,21 +201,23 @@ public class Gallery extends JFrame {
 
 
     public static void main(String[] args) {
-        new Gallery();
+        EventQueue.invokeLater(() -> {
+            Gallery frame = new Gallery();
+        });
     }
 
     private void createUIComponents() {
         // TODO: place custom component creation code here
-        SqlDateModel model = new SqlDateModel();
+        model = new SqlDateModel();
         Properties p = new Properties();
         p.put("text.today", "Today");
         p.put("text.month", "Month");
         p.put("text.year", "Year");
-        JDatePanelImpl datePanel = new JDatePanelImpl(model, p);
+        datePanel = new JDatePanelImpl(model, p);
         txt_AddDate = new JDatePickerImpl(datePanel, new JDateFormatter()); //JDatePickerImpl
 
         //Sekcja tabeli
-        DefaultTableModel tableModel=new DefaultTableModel();
+        DefaultTableModel tableModel = new DefaultTableModel();
         tableModel.addColumn("ID");
         tableModel.addColumn("NAME");
         tableModel.addColumn("PRICE");
@@ -279,27 +296,44 @@ public class Gallery extends JFrame {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        productList=list;
         return list;
 
     }
 
-    public void fillJTable(){
-        ArrayList<Product> list=getArrayList();
-        DefaultTableModel tableModel= (DefaultTableModel) JTable_Products.getModel();
+    public void fillJTable() {
+        ArrayList<Product> list = getArrayList();
+        DefaultTableModel tableModel = (DefaultTableModel) JTable_Products.getModel();
 
-        Object[] row=new Object[4];
+        Object[] row = new Object[4];
 
         SimpleDateFormat dateFormatter = new SimpleDateFormat("dd-MM-YYYY");
 
-        for(int i=0;i<list.size();i++)
-        {
-            row[0]=list.get(i).getId();
-            row[1]=list.get(i).getName();
-            row[2]=list.get(i).getPrice();
-            row[3]=dateFormatter.format(list.get(i).getAddDate());
+        tableModel.setRowCount(0);
+        for (int i = 0; i < list.size(); i++) {
+            row[0] = list.get(i).getId();
+            row[1] = list.get(i).getName();
+            row[2] = list.get(i).getPrice();
+            row[3] = dateFormatter.format(list.get(i).getAddDate());
 
             tableModel.addRow(row);
         }
+    }
+
+    public void setDefaultText()  {
+        txt_ID.setText(String.valueOf(productList.get(0).getId()));
+        txt_Name.setText(String.valueOf(productList.get(0).getName()));
+        txt_Price.setText(String.valueOf(productList.get(0).getPrice()));
+
+        String data=productList.get(0).getAddDate().toString();
+        //model = new SqlDateModel(productList.get(0).getAddDate());
+
+        JDateFormatter formatter=new JDateFormatter();
+
+        //JOptionPane.showMessageDialog(null,a.getDay());
+        // model.setSelected(true);
+
+        //txt_AddDate.setDate(String.valueOf(productList.get(0).getId()));
     }
 
     public void getLastIDFromDB() {
@@ -309,14 +343,21 @@ public class Gallery extends JFrame {
         ResultSet rs;
         try {
             st = (Statement) con.createStatement();
-            rs=st.executeQuery(query);
+            rs = st.executeQuery(query);
             rs.next();
-            lastID=rs.getInt(1);
+            lastID = rs.getInt(1);
             //JOptionPane.showMessageDialog(null, lastID);
             con.close();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
+    }
+
+    public void setScreenResolution() {
+        Toolkit kit = Toolkit.getDefaultToolkit();
+        Dimension screenSize = kit.getScreenSize();
+        screenWidth = screenSize.width;
+        screenHeight = screenSize.height;
     }
 }
 
