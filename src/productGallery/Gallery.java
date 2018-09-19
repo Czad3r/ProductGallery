@@ -9,9 +9,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
+import java.io.*;
 import java.sql.DriverManager;
 import java.sql.Date;
 import java.sql.SQLException;
@@ -38,12 +36,14 @@ public class Gallery extends JFrame {
     private JPanel JPanel_Buttony;
     private JButton btn_ChooseImage;
     private JPanel JPanel_Buttony2;
-    private JButton deleteButton;
+    private JButton btn_Delete;
     private JButton firstButton;
     private JPanel JPanel_Buttony3;
     private JLabel labelImage;
     private JButton btn_Insert;
+    private JButton btn_Update;
     private String imagePath;
+    private int lastID;
 
     public Gallery() {
         setContentPane(panel1);
@@ -52,6 +52,7 @@ public class Gallery extends JFrame {
         setLocationRelativeTo(null);
         setSize(1000, 500);
         setTitle("Product Gallery");
+        //getLastIDFromDB(); Metoda do poprawienia
 
 
         btn_ChooseImage.addActionListener(new ActionListener() {
@@ -73,28 +74,40 @@ public class Gallery extends JFrame {
                 }
             }
         });
+
         btn_Insert.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 if (checkInputs() && imagePath != null) {
-                    try {
-                        Connection con = getConnection();
+                    if (!txt_ID.getText().isEmpty()) {
+                        JOptionPane.showMessageDialog(null, "ID is automatically added, don't fill it!");
+                        return;
+                    }
+                    Connection con = getConnection();
+                    if (con != null) {
+                        try (InputStream img = new FileInputStream(new File(imagePath))) {
 
-                        PreparedStatement ps = (PreparedStatement) con.prepareStatement("INSERT INTO przedmiotyallegro(name,price,add_date,image)" + "VALUES(?,?,?,?)");
-                        ps.setString(1, txt_Name.getText());
-                        ps.setString(2, txt_Price.getText());
 
-                        Date selectedDate = (Date)txt_AddDate.getModel().getValue();
-                        String addDate = selectedDate.toString();
-                        ps.setString(3, addDate);
+                            PreparedStatement ps = (PreparedStatement) con.prepareStatement("INSERT INTO przedmiotyallegro(name,price,add_date,image)" + "VALUES(?,?,?,?)");
+                            ps.setString(1, txt_Name.getText());
+                            ps.setString(2, txt_Price.getText());
 
-                        InputStream img = new FileInputStream(new File(imagePath));
-                        ps.setBlob(4,img);// Needed to change MySql config: max_allowed_packet greater than default and innodb_log_file_size
+                            Date selectedDate = (Date) txt_AddDate.getModel().getValue();
+                            String addDate = selectedDate.toString();
+                            ps.setString(3, addDate);
 
-                        ps.executeUpdate();
-                        JOptionPane.showMessageDialog(null, "Succesful insert!");
-                    } catch (Exception e1) {
-                        JOptionPane.showMessageDialog(null, e1.getMessage());
+                            //InputStream img = new FileInputStream(new File(imagePath)) I've replaced that line by try with resources
+                            ps.setBlob(4, img);// Needed to change MySql config: max_allowed_packet greater than default and innodb_log_file_size
+
+
+                            ps.executeUpdate();
+                            JOptionPane.showMessageDialog(null, "Succesful insert!");
+                            con.close();
+                            txt_ID.setEditable(true);
+                        } catch (Exception e1) {
+                            JOptionPane.showMessageDialog(null, e1.getMessage());
+                        }
                     }
 
 
@@ -103,7 +116,68 @@ public class Gallery extends JFrame {
                 }
             }
         });
+
+        btn_Update.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (checkInputs() && imagePath != null) {
+                    if (txt_ID.getText().isEmpty()) {
+                        JOptionPane.showMessageDialog(null, "You have to type correct ID!!!");
+                        return;
+                    }
+                    try (InputStream img = new FileInputStream(imagePath)) {
+                        Connection con = getConnection();
+
+                        String UpdateQuery = "UPDATE przedmiotyallegro SET name=? ,price=? ,add_date=?, image=? WHERE id=?";
+
+                        PreparedStatement ps = (PreparedStatement) con.prepareStatement(UpdateQuery);
+                        ps.setString(1, txt_Name.getText());
+                        ps.setString(2, txt_Price.getText());
+
+                        Date selectedDate = (Date) txt_AddDate.getModel().getValue();
+                        String addDate = selectedDate.toString();
+                        ps.setString(3, addDate);
+                        ps.setBlob(4, img);
+
+                        ps.setInt(5, Integer.parseInt(txt_ID.getText()));
+
+                        ps.executeUpdate();
+                        JOptionPane.showMessageDialog(null, "Succesful update!");
+                        con.close();
+
+                    } catch (FileNotFoundException e1) {
+                        JOptionPane.showMessageDialog(null, "Image file not found!");
+                    } catch (Exception e1) {
+                        JOptionPane.showMessageDialog(null, e1.getMessage());
+                    }
+
+
+                } else JOptionPane.showMessageDialog(null, "One or more field is empty and/or incorrect");
+            }
+        });
+
+        btn_Delete.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (!txt_ID.getText().isEmpty()) {
+                    try {
+                        Connection con = getConnection();
+                        String deleteQuery = "DELETE FROM przedmiotyallegro WHERE id=?";
+                        PreparedStatement ps = (PreparedStatement) con.prepareStatement(deleteQuery);
+                        int id = Integer.parseInt(txt_ID.getText());
+                        ps.setInt(1, id);
+                        ps.executeUpdate();
+                        con.close();
+                        JOptionPane.showMessageDialog(null, "Succesfully deleted record!");
+
+                    } catch (Exception e1) {
+                        JOptionPane.showMessageDialog(null, e1.getMessage());
+                    }
+                } else JOptionPane.showMessageDialog(null, "Enter correct ID product to delete!!!");
+            }
+        });
     }
+
 
     public static void main(String[] args) {
         new Gallery();
@@ -131,11 +205,11 @@ public class Gallery extends JFrame {
         Connection con = null;
         try {
             con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost/products", "root", "");
-            JOptionPane.showMessageDialog(null, "Connected");
+            //JOptionPane.showMessageDialog(null, "Connected");
             return con;
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
             JOptionPane.showMessageDialog(null, "Not connected");
             return null;
         }
@@ -164,12 +238,27 @@ public class Gallery extends JFrame {
      * @return True if all inputs are corrects.
      */
     public boolean checkInputs() {
-        if (txt_ID == null || txt_Name == null || txt_Price == null || txt_AddDate == null) return false;
+        if (txt_Name.getText().isEmpty() || txt_Price.getText().isEmpty() || txt_AddDate.getModel().getValue() == null)
+            return false;
         try {
             Float.parseFloat(txt_Price.getText());
             return true;
         } catch (Exception e) {
             return false;
+        }
+    }
+
+    public void getLastIDFromDB() {
+        Connection con = getConnection();
+        String query = "SELECT id FROM `przedmiotyallegro` ORDER BY id DESC LIMIT 1";
+        try {
+            PreparedStatement ps = (PreparedStatement) con.prepareStatement(query);
+            ps.execute();
+
+            JOptionPane.showMessageDialog(null, lastID);
+            con.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }
 }
