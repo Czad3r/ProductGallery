@@ -8,6 +8,7 @@ What I've done:
 - Browse And Display Image Into JLabel ;
 - Navigation Buttons First, Next, Previous, Last;
 - Swing controls used in this project : JTextField, JButton, JTabel, JLabel, (JDataPicker control from external library);
+
 What I need for that project:
 - Java
 - IntelliJ IDEA
