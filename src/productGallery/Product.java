@@ -1,7 +1,6 @@
 package productGallery;
 
 import java.sql.Date;
-import java.time.LocalDate;
 
 public class Product {
     private int id;

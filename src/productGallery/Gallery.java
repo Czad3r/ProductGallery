@@ -12,6 +12,8 @@ import javax.swing.table.TableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.*;
 import java.sql.DriverManager;
 import java.sql.Date;
@@ -42,11 +44,14 @@ public class Gallery extends JFrame {
     private JButton btn_ChooseImage;
     private JPanel JPanel_Buttony2;
     private JButton btn_Delete;
-    private JButton firstButton;
+    private JButton btn_First;
     private JPanel JPanel_Buttony3;
     private JLabel labelImage;
     private JButton btn_Insert;
     private JButton btn_Update;
+    private JButton btn_Previous;
+    private JButton btn_Next;
+    private JButton btn_Last;
 
     private SqlDateModel model;
     private JDatePanelImpl datePanel;
@@ -56,6 +61,7 @@ public class Gallery extends JFrame {
     private int screenHeight;
     private ArrayList<Product> productList;
     private int lastID;//Potrzeba aktualizacji
+    private int actualRow = 0;
 
     public Gallery() {
         setScreenResolution();
@@ -72,7 +78,7 @@ public class Gallery extends JFrame {
         getLastIDFromDB(); //Metoda do poprawienia
 
         fillJTable();
-        setDefaultText();
+        setDefaultText(0);
 
         btn_ChooseImage.addActionListener(new ActionListener() {
             @Override
@@ -197,6 +203,48 @@ public class Gallery extends JFrame {
                 } else JOptionPane.showMessageDialog(null, "Enter correct ID product to delete!!!");
             }
         });
+        JTable_Products.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int indexOfRow = JTable_Products.getSelectedRow();
+                actualRow = indexOfRow;
+                setDefaultText(indexOfRow);
+
+            }
+        });
+        btn_First.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setDefaultText(0);
+                actualRow=0;
+
+            }
+        });
+        btn_Previous.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(actualRow>0){
+                    setDefaultText(actualRow - 1);
+                    actualRow-=1;
+                }
+            }
+        });
+        btn_Next.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(actualRow<productList.size()-1){
+                    setDefaultText(actualRow+1);
+                    actualRow+=1;
+                }
+            }
+        });
+        btn_Last.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setDefaultText(productList.size() - 1);
+                actualRow=productList.size()-1;
+            }
+        });
     }
 
 
@@ -243,7 +291,7 @@ public class Gallery extends JFrame {
     }
 
     /**
-     * @param imagePath
+     * @param imagePath if null ,method is looking for byte[]
      * @param pic
      * @return Resized image from source.
      */
@@ -296,7 +344,7 @@ public class Gallery extends JFrame {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        productList=list;
+        productList = list;
         return list;
 
     }
@@ -320,20 +368,17 @@ public class Gallery extends JFrame {
         }
     }
 
-    public void setDefaultText()  {
-        txt_ID.setText(String.valueOf(productList.get(0).getId()));
-        txt_Name.setText(String.valueOf(productList.get(0).getName()));
-        txt_Price.setText(String.valueOf(productList.get(0).getPrice()));
+    public void setDefaultText(int index) {
+        txt_ID.setText(String.valueOf(productList.get(index).getId()));
+        txt_Name.setText(String.valueOf(productList.get(index).getName()));
+        txt_Price.setText(String.valueOf(productList.get(index).getPrice()));
 
-        String data=productList.get(0).getAddDate().toString();
-        //model = new SqlDateModel(productList.get(0).getAddDate());
+        Date date3 = new Date(productList.get(index).getAddDate().getTime());
+        model.setValue(date3);
+        model.setSelected(true);
 
-        JDateFormatter formatter=new JDateFormatter();
+        labelImage.setIcon(resizeImage(null, productList.get(index).getPicture()));
 
-        //JOptionPane.showMessageDialog(null,a.getDay());
-        // model.setSelected(true);
-
-        //txt_AddDate.setDate(String.valueOf(productList.get(0).getId()));
     }
 
     public void getLastIDFromDB() {
